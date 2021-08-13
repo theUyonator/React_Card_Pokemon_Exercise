@@ -11,10 +11,13 @@ const useFlip = () => {
     return [state, setIsFacingUp];
 };
 
-const useAxios = ({term=null, base_url}) =>{
+const useAxios = (base_url) =>{
     const [state, setState]  = useState([]);
-    const url = term ? `${base_url}/${term}/` : base_url;
-    const addCard = async () => {
+    const addCard = async (term="") => {
+        const url = `${base_url}/${term}`;
+        console.log(term)
+        console.log(url)
+        console.log(JSON.stringify(term))
         const response = await axios.get(url);
         setState(cards => [...cards, { ...response.data, id: uuid() }]);
       };
